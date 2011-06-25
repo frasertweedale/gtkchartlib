@@ -5,11 +5,11 @@ with open('README') as file:
 
 setup(
     name='pygtkchart',
-    version='0.1',
+    version='0.1.1',
     description='Collection of GTK+ chart widgets',
     author='Fraser Tweedale',
     author_email='frase@frase.id.au',
-    url='http://frase.id.au/repo/gtkchart.git',
+    url='https://gitorious.org/pygtkchart',
     packages=['gtkchartlib'],
     data_files=[
         (

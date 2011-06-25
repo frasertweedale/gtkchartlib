@@ -1,10 +1,12 @@
 Collection of GTK+ chart widgets
 --------------------------------
 
-Provides some nice GTK+ chart widgets.  Requires PyGTK 2.12 or higher.
+Provides some nice GTK+ chart widgets.  Requires PyGTK_ 2.12 or higher.
 
 At this time, provides just a single widget.  More may come as I scratch
 other itches, or as others scratch their own itches and send patches.
 
 ``gtkchartlib.RingChart``
   Visualise hierarchical data in concentric circles.
+
+.. _PyGTK: http://www.pygtk.org/
