@@ -155,12 +155,18 @@ class RingChartItem(object):
                 item.draw(cr, x, y, self.maxrad, thickness, chartdepth)
 
     def _draw(self, cr, highlight=False):
+        revolution = not (self.minangle - self.maxangle) % (2 * math.pi)
         colour = map(lambda x: x + (1 - x) / 2, self.colour) \
             if highlight else self.colour
         cr.arc(self.x, self.y, self.minrad, self.minangle, self.maxangle)
+        if revolution:
+            # do not draw line between arcs
+            cr.new_sub_path()
         cr.arc_negative(self.x, self.y, self.maxrad,
                         self.maxangle, self.minangle)
-        cr.close_path()
+        if not revolution:
+            # do draw line between arcs
+            cr.close_path()
         cr.set_source_rgb(*colour)
         cr.fill_preserve()
         cr.set_line_width(1)
