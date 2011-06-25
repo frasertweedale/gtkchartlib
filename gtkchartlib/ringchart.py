@@ -63,6 +63,13 @@ class RingChartItem(object):
 
     """
     def __init__(self, value, parent=None, items=None, tooltip=None):
+        """Initialise the RingChartItem.
+
+        Raises ValueError if a negative value is provided; negative values
+        do not make sense in radial charts.
+        """
+        if value < 0:
+            raise ValueError("RingChart does not support negative values.")
         super(RingChartItem, self).__init__()
         self.value = value
         self.parent = parent
