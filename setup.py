@@ -12,7 +12,10 @@ setup(
     url='http://frase.id.au/repo/gtkchart.git',
     packages=['gtkchartlib'],
     data_files=[
-        ('doc/pygtkchart/demo', ['demo/ringchart.py']),
+        (
+            'doc/pygtkchart/demo',
+            ['demo/ringchart.py', 'demo/ringchart_single_toplevel.py']
+        ),
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
