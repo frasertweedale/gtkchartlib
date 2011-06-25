@@ -4,16 +4,16 @@ with open('README') as file:
     long_description = file.read()
 
 setup(
-    name='pygtkchart',
-    version='0.1.1',
+    name='gtkchartlib',
+    version='0.1.2',
     description='Collection of GTK+ chart widgets',
     author='Fraser Tweedale',
     author_email='frase@frase.id.au',
-    url='https://gitorious.org/pygtkchart',
+    url='https://gitorious.org/gtkchartlib',
     packages=['gtkchartlib'],
     data_files=[
         (
-            'doc/pygtkchart/demo',
+            'doc/gtkchartlib/demo',
             ['demo/ringchart.py', 'demo/ringchart_single_toplevel.py']
         ),
     ],
