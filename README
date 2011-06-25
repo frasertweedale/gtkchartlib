@@ -9,4 +9,7 @@ other itches, or as others scratch their own itches and send patches.
 ``gtkchartlib.RingChart``
   Visualise hierarchical data in concentric circles.
 
+This project was previously named "pygtkchart".  The name was changed
+after a project of similar name and purpose was encountered elsewhere.
+
 .. _PyGTK: http://www.pygtk.org/

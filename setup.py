@@ -27,4 +27,5 @@ setup(
         'Topic :: Software Development :: Widget Sets',
     ],
     long_description=long_description,
+    obsoletes=['pygtkchart'],
 )
