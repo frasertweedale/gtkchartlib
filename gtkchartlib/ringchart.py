@@ -25,9 +25,6 @@
 # distributed under the terms of the GNU General Public License version
 # 2 or later.
 #   http://git.gnome.org/browse/gnome-utils/
-#
-# The colours are from the Tango palette:
-#   http://tango.freedesktop.org/Tango_Icon_Theme_Guidelines
 
 from __future__ import division
 
@@ -38,16 +35,6 @@ import gtk
 
 if gtk.pygtk_version < (2, 12, 0):
     sys.exit("PyGtk 2.12 or later required")
-
-
-colours = [
-    (0.94, 0.16, 0.16),
-    (0.68, 0.49, 0.66),
-    (0.45, 0.62, 0.82),
-    (0.54, 0.89, 0.20),
-    (0.91, 0.73, 0.43),
-    (0.99, 0.68, 0.25),
-]
 
 
 class RingChartItem(object):
@@ -117,14 +104,8 @@ class RingChartItem(object):
                 angle = item.calc_angle(angle)
 
         # calculate the colour for this angle
-        persex = self.minangle / math.pi * 3
-        colour_a, frac = divmod(persex, 1)
-        colour_b = (colour_a + 1) % 6
-        self.colour = map(
-            lambda a, b: a - (a - b) * frac,
-            colours[int(colour_a)],
-            colours[int(colour_b)]
-        )
+        self.colour = \
+            gtk.gdk.color_from_hsv(self.minangle / (2 * math.pi), 0.75, 0.95)
 
         return self.maxangle
 
@@ -163,8 +144,11 @@ class RingChartItem(object):
 
     def _draw(self, cr, highlight=False):
         revolution = not (self.minangle - self.maxangle) % (2 * math.pi)
-        colour = map(lambda x: x + (1 - x) / 2, self.colour) \
-            if highlight else self.colour
+        colour = gtk.gdk.color_from_hsv(
+            self.colour.hue,
+            self.colour.saturation / 3,
+            self.colour.value
+        ) if highlight else self.colour
         cr.arc(self.x, self.y, self.minrad, self.minangle, self.maxangle)
         if revolution:
             # do not draw line between arcs
@@ -174,7 +158,11 @@ class RingChartItem(object):
         if not revolution:
             # do draw line between arcs
             cr.close_path()
-        cr.set_source_rgb(*colour)
+        cr.set_source_rgb(
+            colour.red_float,
+            colour.blue_float,
+            colour.green_float
+        )
         cr.fill_preserve()
         cr.set_line_width(1)
         cr.set_source_rgb(0, 0, 0)
